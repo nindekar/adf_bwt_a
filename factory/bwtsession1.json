@@ -1,0 +1,9 @@
+{
+	"name": "bwtsession1",
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ac8dfc6a-b534-4a86-8f4a-764d18f550a0",
+		"tenantId": "30d7d46c-b2de-4d7d-9cfa-109cc3e23261"
+	}
+}
