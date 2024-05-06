@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
-			"containerUri": "https://udformula1.blob.core.windows.net/bronze",
+			"containerUri": "https://udformula1.blob.core.windows.net/formula1",
 			"authenticationType": "Anonymous"
 		}
 	},
