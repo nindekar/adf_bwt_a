@@ -8,7 +8,11 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"batchCount": 3,
+					"items": {
+						"value": "@pipeline().parameters.race_lst",
+						"type": "Expression"
+					},
+					"batchCount": 5,
 					"activities": [
 						{
 							"name": "act_set_var_season_id",
@@ -84,7 +88,8 @@
 								"sink": {
 									"type": "JsonSink",
 									"storeSettings": {
-										"type": "AzureBlobStorageWriteSettings"
+										"type": "AzureBlobStorageWriteSettings",
+										"copyBehavior": "MergeFiles"
 									},
 									"formatSettings": {
 										"type": "JsonWriteSettings"

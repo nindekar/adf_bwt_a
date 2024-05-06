@@ -5,6 +5,8 @@
 			{
 				"name": "act_copy_data_api",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -61,6 +63,8 @@
 			{
 				"name": "act_lookup_read_file_content",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "act_copy_data_api",
@@ -83,7 +87,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "@concat('bronze/sessions/',string(utcNow('yyyyMMdd')))",
+							"wildcardFolderPath": {
+								"value": "@concat('bronze/sessions/',string(utcNow('yyyyMMdd')))",
+								"type": "Expression"
+							},
 							"wildcardFileName": "*.json",
 							"enablePartitionDiscovery": false
 						},
@@ -101,6 +108,8 @@
 			{
 				"name": "act_foreach_read_file_content_race",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "act_lookup_read_file_content",
@@ -180,7 +189,7 @@
 				}
 			},
 			{
-				"name": "act_lookup_read_file_content_file",
+				"name": "act_lookup_read_file_content_race",
 				"type": "Lookup",
 				"dependsOn": [
 					{
@@ -204,6 +213,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": {
+								"value": "@concat('bronze/race/',string(utcNow('yyyyMMdd')))",
+								"type": "Expression"
+							},
 							"wildcardFileName": "*.json",
 							"enablePartitionDiscovery": false
 						},
@@ -221,16 +234,21 @@
 			{
 				"name": "act_foreach_race_session_file",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Skipped",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "act_lookup_read_file_content_race",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
 						"value": "@activity('act_lookup_read_file_content_race').output.value",
 						"type": "Expression"
 					},
-					"batchCount": 3,
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "act_exec_bring_race_result",
