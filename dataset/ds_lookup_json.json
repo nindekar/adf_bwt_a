@@ -1,0 +1,22 @@
+{
+	"name": "ds_lookup_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_formula1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@concat('')",
+					"type": "Expression"
+				},
+				"container": "formula1"
+			}
+		},
+		"schema": {}
+	}
+}
