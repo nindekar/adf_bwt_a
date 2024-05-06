@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "http://ergast.com/api/f1/season.json",
+			"url": "http://ergast.com/api/f1/season",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
