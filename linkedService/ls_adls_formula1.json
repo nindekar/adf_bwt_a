@@ -1,0 +1,11 @@
+{
+	"name": "ls_adls_formula1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"containerUri": "https://udformula1.blob.core.windows.net/formula1",
+			"authenticationType": "Anonymous"
+		}
+	}
+}
