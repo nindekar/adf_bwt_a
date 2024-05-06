@@ -18,8 +18,37 @@
 					"method": "GET",
 					"url": "http://ergast.com/api/f1/circuits.json"
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Web1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "first_response",
+					"value": {
+						"value": "@string(activity('Web1').output)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"first_response": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
