@@ -1,0 +1,23 @@
+{
+	"name": "ds_restresource_formula1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_httpserver",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"relative_url": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@dataset().relative_url",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}

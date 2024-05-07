@@ -1,0 +1,64 @@
+{
+	"name": "pl_ingest_api_driver",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_copy_data_driver_api_to_adls",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "MergeFiles"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_restresource_formula1",
+						"type": "DatasetReference",
+						"parameters": {
+							"relative_url": {
+								"value": "driver.json?limit=10000",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_adls_formula1",
+						"type": "DatasetReference",
+						"parameters": {
+							"directory_path": {
+								"value": "@concat('bronze/driver/',string(utcNow('yyyyMMdd')))",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

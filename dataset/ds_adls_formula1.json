@@ -1,0 +1,27 @@
+{
+	"name": "ds_adls_formula1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_formula1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"directory_path": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().directory_path",
+					"type": "Expression"
+				},
+				"container": "formula1"
+			}
+		},
+		"schema": {}
+	}
+}
