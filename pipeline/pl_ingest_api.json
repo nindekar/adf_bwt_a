@@ -103,6 +103,7 @@
 			},
 			{
 				"name": "act_foreach_season",
+				"description": "this activity will iterate over each sessions",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -118,6 +119,7 @@
 						"value": "@activity('act_lookup_read_file_content').output.value[0].MRData.SeasonTable.Seasons",
 						"type": "Expression"
 					},
+					"isSequential": false,
 					"batchCount": 3,
 					"activities": [
 						{
