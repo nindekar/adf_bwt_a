@@ -9,13 +9,19 @@
 					"referenceName": "pl_test",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "pl_ingest_api",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Minute",
-				"interval": 2,
+				"interval": 10,
 				"startTime": "2024-04-21T05:10:00",
 				"endTime": "2024-04-22T05:10:00",
 				"timeZone": "India Standard Time"
