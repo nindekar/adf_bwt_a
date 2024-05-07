@@ -102,7 +102,7 @@
 				}
 			},
 			{
-				"name": "act_foreach_read_file_content_race",
+				"name": "act_foreach_season",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -146,7 +146,8 @@
 								"sink": {
 									"type": "JsonSink",
 									"storeSettings": {
-										"type": "AzureBlobStorageWriteSettings"
+										"type": "AzureBlobStorageWriteSettings",
+										"copyBehavior": "MergeFiles"
 									},
 									"formatSettings": {
 										"type": "JsonWriteSettings"
@@ -187,7 +188,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "act_foreach_read_file_content_race",
+						"activity": "act_foreach_season",
 						"dependencyConditions": [
 							"Succeeded"
 						]
