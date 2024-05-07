@@ -5,8 +5,6 @@
 			{
 				"name": "act_copy_data_api",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -63,8 +61,6 @@
 			{
 				"name": "act_lookup_read_file_content",
 				"type": "Lookup",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "act_copy_data_api",
@@ -108,8 +104,6 @@
 			{
 				"name": "act_foreach_read_file_content_race",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "act_lookup_read_file_content",
